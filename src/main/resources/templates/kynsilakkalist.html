@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Kynsilakka List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1,
+        h2,
+        p {
+            text-align: center;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💅</text></svg>" />
+</head>
+
+<body>
+
+    <br>
+    <a href="/index" class="btn btn-info ">Takaisin etusivulle</a>
+    <h1> 💗💅 Kynsilakat 💅💗</h1>
+
+    <br>
+
+    <p> 🌸 Täältä löydät kynsilakat! Halutessasi voit lisätä, poistaa tai muokata kynsilakkojasi. Huomioithan että
+        muutosten tekeminen tietoihin vaatii sisäänkirjautumisen 🌸</p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Kynsilakan nimi</th>
+            <th>Kynsilakan väri</th>
+            <th>Hankinta-aika</th>
+            <th>Tuotetyyppi</th>
+            <th>Poista</th>
+            <th>Muokkaa</th>
+        </tr>
+
+        <tr th:each="kynsilakka : ${kynsilakat}">
+            <td th:text="${kynsilakka.getLakka_nimi()}">Kynsilakan nimi</td>
+            <td th:text="${kynsilakka.getLakka_vari()}">Kynsilakan väri</td>
+            <td th:text="${kynsilakka.getLakka_hankinta()}">Hankinta-aika</td>
+            <td th:text="${kynsilakka.getKategoria()}">Tuotetyyppi</td>
+            <td><a th:href="@{/deletenailpolish/{id}(id=${kynsilakka.lakka_id})}" class="btn btn-warning">Poista</a>
+            </td>
+            <td><a th:href="@{/editnailpolish/{id}(id=${kynsilakka.lakka_id})}" class="btn btn-secondary">Muokkaa</a>
+            </td>
+
+        </tr>
+    </table>
+
+    <a href="/addnailpolish" class="btn btn-primary">Lisää kynsilakka</a>
+
+</body>
+
+</html>

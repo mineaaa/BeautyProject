@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>" />
+    <style>
+        h1,
+        p,
+        div {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎀💘Lisää uusi kategoria💘🎀</h1>
+
+    <br>
+    <p> 🌸Voit kyseisellä sivulla lisätä tuotetyyppejä järjestelmääsi! 🌸</p>
+
+    <div>
+        <form th:object="${kategoria}" th:action="@{/savetype}" action="#" method="post">
+
+            <label for="tuotetyyppi">Uusi tuotetyyppi</label>
+            <input type="text" id="tuotetyyppi" th:field="*{tuotetyyppi}" />
+
+            <input type="submit" value="Lisää kategoria"></input>
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>

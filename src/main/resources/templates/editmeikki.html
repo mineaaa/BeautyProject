@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit meikki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💄</text></svg>" />
+    <style>
+        h1,
+        p,
+        div {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <h1>💓💄Muokkaa tuotteen tietoja 💄💓</h1>
+    <p> 🌸Voit muokata meikkituotteesi tietoja 🌸</p>
+    <div>
+        <form th:object="${makeup}" th:action="@{/saveeditmeikki}" method="post">
+            <input type="hidden" th:field="*{meikki_id}" class="form-control" />
+
+            <label for="meikkinimi">Meikkituotteen nimi</label>
+            <input type="text" id="meikkinimi" th:field="*{meikkinimi}" />
+
+            <label for="meikkihankinta">Tuotteen hankkimispäivämäärä</label>
+            <input type="date" id="meikkihankinta" th:field="*{meikkihankinta}" />
+
+            <label for="meikki_hinta">Hinta</label>
+            <input type="number" step="0.01" id="meikki_hinta" th:field="*{meikki_hinta}" />
+
+            <label for="kategoria">Tuotetyyppi</label>
+            <select id="kategoria" th:field="*{kategoria}">
+                <option th:each="kategoria: ${kategoriat}" th:value="${kategoria.kategoria_id}"
+                    th:text="${kategoria.tuotetyyppi}">
+                </option>
+            </select>
+
+
+            <input type="submit" class="btn btn-secondary" value="Päivitä" />
+        </form>
+    </div>
+
+
+</body>
+
+
+</html>

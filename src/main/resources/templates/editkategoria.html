@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>edit category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1,
+        p {
+            text-align: center;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>" />
+</head>
+
+<body>
+    <br>
+    <h1>🎀💘Muokkaa kynsilakan tietoja 💘🎀</h1>
+    <p> 🌸Voit muokata kategoriaa täällä🌸</p>
+
+    <div>
+
+        <form th:object="${kategoria}" th:action="@{/saveeditcategory}" method="post">
+
+            <input type="hidden" th:field="*{kategoria_id}" class="form-control" />
+
+            <label for="tuotetyyppi">Kategoria</label>
+            <input type="text" id="tuotetyyppi" th:field="*{tuotetyyppi}" />
+
+            <input type="submit" class="btn btn-secondary" value="Päivitä" />
+        </form>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Meikki List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1,
+        h2,
+        p {
+            text-align: center;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💄</text></svg>" />
+</head>
+
+<body>
+
+    <br>
+    <a href="/index" class="btn btn-warning">Takaisin etusivulle</a>
+    <h1> 🎀💄Meikit 💄🎀</h1>
+
+    <br>
+
+    <p> 🌸 Täältä löydät meikkisi! Halutessasi voit lisätä, poistaa tai muokata meikkitietojasi. Huomioithan että
+        muutosten tekeminen tietoihin vaatii sisäänkirjautumisen 🌸</p>
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>Meikkituotteen nimi</th>
+            <th> Hankinta-aika</th>
+            <th>Hinta</th>
+            <th>Tuotetyyppi</th>
+            <th>Poista tuote</th>
+            <th>Muokkaa tuotetta</th>
+        </tr>
+
+        <tr th:each="makeup : ${makeups}">
+
+            <td th:text="${makeup.getMeikkinimi()}">Meikkituotteen nimi</td>
+            <td th:text="${makeup.getMeikkihankinta()}">Hankinta-aika</td>
+            <td th:text="${makeup.getMeikki_hinta()}">Hinta</td>
+            <td th:text="${makeup.getKategoria()}">Tuotetyyppi</td>
+            <td><a th:href="@{/deletemakeup/{id}(id=${makeup.meikki_id})}" class="btn btn-info">Poista</a></td>
+            <td><a th:href="@{/editmakeup/{id}(id=${makeup.meikki_id})}" class="btn btn-primary">Muokkaa</a></td>
+
+        </tr>
+
+
+    </table>
+
+    <br>
+
+    <a href="/addmakeup" class="btn btn-secondary">Lisää tuote</a>
+
+</body>
+
+</html>

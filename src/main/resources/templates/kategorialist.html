@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Kategoria List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1,
+        p {
+            text-align: center;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="/bootstrap.min.css" th:href="@{/bootstrap.min.css}" />
+    <link rel="icon" type="image/svg+xml" sizes="any"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>" />
+</head>
+
+<body>
+
+    <br>
+    <a href="/index" class="btn btn-secondary ">Takaisin etusivulle</a>
+    <h1> 🎀💘 Kategoriat 💘🎀</h1>
+
+    <br>
+
+    <p> 🌸 Täältä löydät kategoriat! Halutessasi voit lisätä, poistaa tai muokata kategorioita. Huomioithan että
+        muutosten tekeminen tietoihin vaatii sisäänkirjautumisen 🌸</p>
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>Kategorian nimi</th>
+            <th>Poista kategoria</th>
+            <th>Muokkaa</th>
+        </tr>
+
+        <tr th:each="kategoria : ${kategoriat}">
+
+            <td th:text="${kategoria.getTuotetyyppi()}">Tuotetyyppi</td>
+            <td> <a th:href="@{/deletecategory/{id}(id=${kategoria.kategoria_id})}" class="btn btn-info">Poista</td>
+            <td> <a th:href="@{/editcategory/{id}(id=${kategoria.kategoria_id})}" class="btn btn-success">Muokkaa</td>
+        </tr>
+
+    </table>
+
+    <a href="/addtype" class="btn btn-warning">Lisää kategoria</a>
+</body>
+
+</html>

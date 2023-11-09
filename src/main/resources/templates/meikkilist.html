@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Meikki List</title>
@@ -34,8 +34,8 @@
             <th> Hankinta-aika</th>
             <th>Hinta</th>
             <th>Tuotetyyppi</th>
-            <th>Poista tuote</th>
-            <th>Muokkaa tuotetta</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Poista tuote</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Muokkaa tuotetta</th>
         </tr>
 
         <tr th:each="makeup : ${makeups}">
@@ -44,8 +44,10 @@
             <td th:text="${makeup.getMeikkihankinta()}">Hankinta-aika</td>
             <td th:text="${makeup.getMeikki_hinta()}">Hinta</td>
             <td th:text="${makeup.getKategoria()}">Tuotetyyppi</td>
-            <td><a th:href="@{/deletemakeup/{id}(id=${makeup.meikki_id})}" class="btn btn-info">Poista</a></td>
-            <td><a th:href="@{/editmakeup/{id}(id=${makeup.meikki_id})}" class="btn btn-primary">Muokkaa</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletemakeup/{id}(id=${makeup.meikki_id})}"
+                    class="btn btn-info">Poista</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editmakeup/{id}(id=${makeup.meikki_id})}"
+                    class="btn btn-primary">Muokkaa</a></td>
 
         </tr>
 
@@ -54,7 +56,7 @@
 
     <br>
 
-    <a href="/addmakeup" class="btn btn-secondary">Lisää tuote</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/addmakeup" class="btn btn-secondary">Lisää tuote</a>
 
 </body>
 

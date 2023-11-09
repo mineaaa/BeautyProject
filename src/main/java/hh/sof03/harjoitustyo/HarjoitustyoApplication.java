@@ -13,6 +13,8 @@ import hh.sof03.harjoitustyo.domain.Kynsilakka;
 import hh.sof03.harjoitustyo.domain.KynsilakkaRepository;
 import hh.sof03.harjoitustyo.domain.Meikki;
 import hh.sof03.harjoitustyo.domain.MeikkiRepository;
+import hh.sof03.harjoitustyo.domain.User;
+import hh.sof03.harjoitustyo.domain.UserRepository;
 
 @SpringBootApplication
 public class HarjoitustyoApplication {
@@ -23,7 +25,8 @@ public class HarjoitustyoApplication {
 
 	@Bean
 	public CommandLineRunner kauneusJarjestelma(MeikkiRepository meikkiRepository,
-			KynsilakkaRepository kynsilakkaRepository, KategoriaRepository kategoriaRepository) {
+			KynsilakkaRepository kynsilakkaRepository, KategoriaRepository kategoriaRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 			Kategoria c1 = new Kategoria("Poskipuna");
 			kategoriaRepository.save(c1);
@@ -56,6 +59,10 @@ public class HarjoitustyoApplication {
 
 			Kynsilakka k2 = new Kynsilakka("W7 102A Retreat", "Violetti", LocalDate.of(2020, 4, 14), c3);
 			kynsilakkaRepository.save(k2);
+
+			User user1 = new User("admin", "$2a$10$whw5dGSF1d0T010NFcz1pOpYD0kN7wwmDMq6XKGiMCwbfW5fCMxju",
+					"admin@haagahelia.fi", "ADMIN");
+			userRepository.save(user1);
 
 		};
 

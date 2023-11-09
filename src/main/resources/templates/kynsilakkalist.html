@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Kynsilakka List</title>
@@ -33,24 +33,26 @@
             <th>Kynsilakan väri</th>
             <th>Hankinta-aika</th>
             <th>Tuotetyyppi</th>
-            <th>Poista</th>
-            <th>Muokkaa</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Poista</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Muokkaa</th>
         </tr>
 
         <tr th:each="kynsilakka : ${kynsilakat}">
             <td th:text="${kynsilakka.getLakka_nimi()}">Kynsilakan nimi</td>
-            <td th:text="${kynsilakka.getLakka_vari()}">Kynsilakan väri</td>
+            <td th:text="${kynsilakka.getLakkaVari()}">Kynsilakan väri</td>
             <td th:text="${kynsilakka.getLakka_hankinta()}">Hankinta-aika</td>
             <td th:text="${kynsilakka.getKategoria()}">Tuotetyyppi</td>
-            <td><a th:href="@{/deletenailpolish/{id}(id=${kynsilakka.lakka_id})}" class="btn btn-warning">Poista</a>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletenailpolish/{id}(id=${kynsilakka.lakka_id})}"
+                    class="btn btn-warning">Poista</a>
             </td>
-            <td><a th:href="@{/editnailpolish/{id}(id=${kynsilakka.lakka_id})}" class="btn btn-secondary">Muokkaa</a>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editnailpolish/{id}(id=${kynsilakka.lakka_id})}"
+                    class="btn btn-secondary">Muokkaa</a>
             </td>
 
         </tr>
     </table>
 
-    <a href="/addnailpolish" class="btn btn-primary">Lisää kynsilakka</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/addnailpolish" class="btn btn-primary">Lisää kynsilakka</a>
 
 </body>
 

@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
         h1,
+        h2,
         div {
             text-align: center;
         }
@@ -16,10 +17,18 @@
 </head>
 
 <body>
+    <form th:action="@{/login}" method="post">
+        <input type="submit" value="Kirjaudu sisään" />
+    </form>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Kirjaudu ulos" />
+    </form>
     <br>
     <h1> 💄💅🤍Tervetuloa kauneustuotteiden <br>hallintajärjestelmääsi! 🤍💅💄</h1>
 
     <br>
+
+    <h2 sec:authorize="hasAuthority('ADMIN')"> 💕Hei <span sec:authentication="name"></span>! 💕</h2>
 
     <div>
         <p>🌸Kyseisessä järjestelmässä voit pidää kirjaa omista tuotteistasi ja tuotteidesi kategorioista.

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Kategoria List</title>
@@ -30,20 +30,22 @@
 
         <tr>
             <th>Kategorian nimi</th>
-            <th>Poista kategoria</th>
-            <th>Muokkaa</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Poista kategoria</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Muokkaa</th>
         </tr>
 
         <tr th:each="kategoria : ${kategoriat}">
 
             <td th:text="${kategoria.getTuotetyyppi()}">Tuotetyyppi</td>
-            <td> <a th:href="@{/deletecategory/{id}(id=${kategoria.kategoria_id})}" class="btn btn-info">Poista</td>
-            <td> <a th:href="@{/editcategory/{id}(id=${kategoria.kategoria_id})}" class="btn btn-success">Muokkaa</td>
+            <td sec:authorize="hasAuthority('ADMIN')"> <a
+                    th:href="@{/deletecategory/{id}(id=${kategoria.kategoria_id})}" class="btn btn-info">Poista</td>
+            <td sec:authorize="hasAuthority('ADMIN')"> <a th:href="@{/editcategory/{id}(id=${kategoria.kategoria_id})}"
+                    class="btn btn-success">Muokkaa</td>
         </tr>
 
     </table>
 
-    <a href="/addtype" class="btn btn-warning">Lisää kategoria</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/addtype" class="btn btn-warning">Lisää kategoria</a>
 </body>
 
 </html>

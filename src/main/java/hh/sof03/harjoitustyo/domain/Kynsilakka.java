@@ -19,7 +19,7 @@ public class Kynsilakka {
 
     private long lakka_id;
     private String lakka_nimi;
-    private String lakka_vari;
+    private String lakkaVari;
     private LocalDate lakka_hankinta;
 
     @ManyToOne
@@ -27,9 +27,9 @@ public class Kynsilakka {
     @JoinColumn(name = "kategoria_id")
     private Kategoria kategoria;
 
-    public Kynsilakka(String lakka_nimi, String lakka_vari, LocalDate lakka_hankinta, Kategoria kategoria) {
+    public Kynsilakka(String lakka_nimi, String lakkaVari, LocalDate lakka_hankinta, Kategoria kategoria) {
         this.lakka_nimi = lakka_nimi;
-        this.lakka_vari = lakka_vari;
+        this.lakkaVari = lakkaVari;
         this.lakka_hankinta = lakka_hankinta;
         this.kategoria = kategoria;
     }
@@ -37,11 +37,11 @@ public class Kynsilakka {
     public Kynsilakka() {
     }
 
-    public Kynsilakka(long lakka_id, String lakka_nimi, String lakka_vari, LocalDate lakka_hankinta,
+    public Kynsilakka(long lakka_id, String lakka_nimi, String lakkaVari, LocalDate lakka_hankinta,
             Kategoria kategoria) {
         this.lakka_id = lakka_id;
         this.lakka_nimi = lakka_nimi;
-        this.lakka_vari = lakka_vari;
+        this.lakkaVari = lakkaVari;
         this.lakka_hankinta = lakka_hankinta;
         this.kategoria = kategoria;
     }
@@ -62,12 +62,12 @@ public class Kynsilakka {
         this.lakka_nimi = lakka_nimi;
     }
 
-    public String getLakka_vari() {
-        return lakka_vari;
+    public String getLakkaVari() {
+        return lakkaVari;
     }
 
-    public void setLakka_vari(String lakka_vari) {
-        this.lakka_vari = lakka_vari;
+    public void setLakkaVari(String lakkaVari) {
+        this.lakkaVari = lakkaVari;
     }
 
     public LocalDate getLakka_hankinta() {
@@ -89,10 +89,10 @@ public class Kynsilakka {
     @Override
     public String toString() {
         if (this.kategoria != null) {
-            return "Kynsilakka [lakka_nimi=" + lakka_nimi + ", lakka_vari=" + lakka_vari + ", lakka_hankinta="
+            return "Kynsilakka [lakka_nimi=" + lakka_nimi + ", lakka_vari=" + lakkaVari + ", lakka_hankinta="
                     + lakka_hankinta + ", kategoria=" + kategoria + "]";
         } else {
-            return "Kynsilakka [lakka_nimi=" + lakka_nimi + ", lakka_vari=" + lakka_vari + ", lakka_hankinta="
+            return "Kynsilakka [lakka_nimi=" + lakka_nimi + ", lakka_vari=" + lakkaVari + ", lakka_hankinta="
                     + lakka_hankinta + "]";
         }
 

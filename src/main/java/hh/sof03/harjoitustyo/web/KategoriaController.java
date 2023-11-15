@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.sof03.harjoitustyo.domain.Kategoria;
 import hh.sof03.harjoitustyo.domain.KategoriaRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class KategoriaController {
@@ -37,7 +39,10 @@ public class KategoriaController {
 
     @RequestMapping(value = "/savetype", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String saveProductType(Kategoria kategoria) {
+    public String saveProductType(@Valid Kategoria kategoria, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addkategoria";
+        }
         kategoriaRepository.save(kategoria);
         return "redirect:/kategorialist";
     }
@@ -58,7 +63,11 @@ public class KategoriaController {
 
     @RequestMapping(value = "/saveeditcategory", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String saveEditCategory(@ModelAttribute("kategoria") Kategoria kategoria) {
+    public String saveEditCategory(@Valid @ModelAttribute("kategoria") Kategoria kategoria,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "editkategoria";
+        }
         kategoriaRepository.save(kategoria);
         return "redirect:/kategorialist";
     }

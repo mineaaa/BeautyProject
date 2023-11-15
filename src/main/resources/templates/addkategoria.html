@@ -28,6 +28,7 @@
 
             <label for="tuotetyyppi">Uusi tuotetyyppi</label>
             <input type="text" id="tuotetyyppi" th:field="*{tuotetyyppi}" />
+            <div th:if="${#fields.hasErrors('tuotetyyppi')}" th:errors="*{tuotetyyppi}">Syötä nimi</div>
 
             <input type="submit" value="Lisää kategoria"></input>
 

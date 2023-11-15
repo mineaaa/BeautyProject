@@ -2,6 +2,8 @@ package hh.sof03.harjoitustyo.domain;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -18,6 +20,7 @@ public class Kynsilakka {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private long lakka_id;
+    @NotEmpty
     private String lakka_nimi;
     private String lakkaVari;
     private LocalDate lakka_hankinta;

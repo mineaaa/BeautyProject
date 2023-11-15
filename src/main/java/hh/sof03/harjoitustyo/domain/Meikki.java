@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Meikki {
@@ -19,6 +20,7 @@ public class Meikki {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long meikki_id;
+    @NotEmpty
     private String meikkinimi;
     @Column(name = "hankinta-aika")
     private LocalDate meikkihankinta;

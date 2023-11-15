@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>edit category</title>
@@ -28,6 +28,7 @@
 
             <label for="tuotetyyppi">Kategoria</label>
             <input type="text" id="tuotetyyppi" th:field="*{tuotetyyppi}" />
+            <div th:if="${#fields.hasErrors('tuotetyyppi')}" th:errors="*{tuotetyyppi}">Syötä tuotteelle nimi</div>
 
             <input type="submit" class="btn btn-secondary" value="Päivitä" />
         </form>

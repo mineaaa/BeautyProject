@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Kategoria {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long kategoria_id;
+    @NotEmpty
     private String tuotetyyppi;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategoria")

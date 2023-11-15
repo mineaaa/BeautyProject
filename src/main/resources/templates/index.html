@@ -17,12 +17,8 @@
 </head>
 
 <body>
-    <form th:action="@{/login}" method="post">
-        <input type="submit" value="Kirjaudu sisään" />
-    </form>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Kirjaudu ulos" />
-    </form>
+    <a href="/login" sec:authorize="isAnonymous()" class="btn btn-primary">Kirjaudu sisään</a>
+    <a href="/logout" sec:authorize="hasAuthority('ADMIN')" class="btn btn-warning">Kirjaudu ulos</a>
     <br>
     <h1> 💄💅🤍Tervetuloa kauneustuotteiden <br>hallintajärjestelmääsi! 🤍💅💄</h1>
 

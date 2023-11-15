@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Edit meikki</title>
@@ -26,6 +26,7 @@
 
             <label for="meikkinimi">Meikkituotteen nimi</label>
             <input type="text" id="meikkinimi" th:field="*{meikkinimi}" />
+            <div th:if="${#fields.hasErrors('meikkinimi')}" th:errors="*{meikkinimi}">Syötä tuotteelle nimi</div>
 
             <label for="meikkihankinta">Tuotteen hankkimispäivämäärä</label>
             <input type="date" id="meikkihankinta" th:field="*{meikkihankinta}" />

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import hh.sof03.harjoitustyo.domain.KategoriaRepository;
 import hh.sof03.harjoitustyo.domain.Kynsilakka;
 import hh.sof03.harjoitustyo.domain.KynsilakkaRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class KynsilakkaController {
@@ -49,7 +51,11 @@ public class KynsilakkaController {
 
     @RequestMapping(value = "/savenailpolish", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String saveNailpolish(Kynsilakka kynsilakka) {
+    public String saveNailpolish(@Valid Kynsilakka kynsilakka, BindingResult bindingResult, Model model) {
+        model.addAttribute("kategoriat", kategoriaRepository.findAll());
+        if (bindingResult.hasErrors()) {
+            return "addkynsilakka";
+        }
         kynsilakkaRepository.save(kynsilakka);
         return "redirect:/kynsilakkalist";
     }
@@ -64,7 +70,12 @@ public class KynsilakkaController {
 
     @RequestMapping(value = "/saveeditnailpolish", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String editKynsilakkaSubmit(@ModelAttribute("nailpolish") Kynsilakka nailpolish) {
+    public String editKynsilakkaSubmit(@Valid @ModelAttribute("nailpolish") Kynsilakka nailpolish,
+            BindingResult bindingResult, Model model) {
+        model.addAttribute("kategoriat", kategoriaRepository.findAll());
+        if (bindingResult.hasErrors()) {
+            return "editkynsilakka";
+        }
         kynsilakkaRepository.save(nailpolish);
         return "redirect:/kynsilakkalist";
     }

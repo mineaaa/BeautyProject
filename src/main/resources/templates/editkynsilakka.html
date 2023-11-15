@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Edit nailpolish</title>
@@ -28,6 +28,7 @@
 
             <label for="lakka_nimi">Kynsilakan nimi</label>
             <input type="text" id="lakka_nimi" th:field="*{lakka_nimi}" />
+            <div th:if="${#fields.hasErrors('lakka_nimi')}" th:errors="*{lakka_nimi}">Syötä tuotteelle nimi</div>
 
             <label for="lakkaVari">Kynsilakan väri</label>
             <input type="text" id="lakkaVari" th:field="*{lakkaVari}" />

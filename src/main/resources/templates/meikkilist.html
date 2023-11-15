@@ -42,7 +42,7 @@
 
             <td th:text="${makeup.getMeikkinimi()}">Meikkituotteen nimi</td>
             <td th:text="${makeup.getMeikkihankinta()}">Hankinta-aika</td>
-            <td th:text="${makeup.getMeikki_hinta()}">Hinta</td>
+            <td th:text="${makeup.getMeikki_hinta()}">Hinta €</td>
             <td th:text="${makeup.getKategoria()}">Tuotetyyppi</td>
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletemakeup/{id}(id=${makeup.meikki_id})}"
                     class="btn btn-info">Poista</a></td>

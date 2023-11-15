@@ -43,14 +43,14 @@ public class HarjoitustyoApplication {
 			Kategoria c5 = new Kategoria("Kulmakynä");
 			kategoriaRepository.save(c5);
 
-			Meikki m1 = new Meikki("Maybelline New York Lash Sensational Sky High", LocalDate.of(2023, 10, 2), 15.00,
+			Meikki m1 = new Meikki("Maybelline New York Lash Sensational Sky High", LocalDate.of(2023, 10, 2), 13.50,
 					c4);
 			meikkiRepository.save(m1);
 
 			Meikki m2 = new Meikki("Essence Baby Got Blush 10 tickle me pink", LocalDate.of(2022, 5, 10), 8.50, c1);
 			meikkiRepository.save(m2);
 
-			Meikki m3 = new Meikki("Micro Brow Pencil Brunette", LocalDate.of(2022, 3, 12), 15.00, c5);
+			Meikki m3 = new Meikki("Micro Brow Pencil Brunette", LocalDate.of(2022, 3, 12), 15.29, c5);
 			meikkiRepository.save(m3);
 
 			Kynsilakka k1 = new Kynsilakka("Essie Spring 2023 Collection 13,5ml", "Vaaleanpunainen ja kimalteleva",
